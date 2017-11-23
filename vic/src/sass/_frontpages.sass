@@ -1,0 +1,342 @@
+/*___________    Main  comtent       _______________*/
+/*____________       Section About             _______________*/
+section
+	padding: 100px 10px
+#about
+	max-height: 1300px
+
+.title__wrap
+		margin: 10px auto 50px
+
+.title
+	text-align: center
+	font-size: rem(48px)
+	font-family: $fsb
+	text-transform: uppercase
+	color: #1abc9c
+	padding-bottom: 40px
+	margin: 0 auto
+	position: relative
+	&:before
+		content: ""
+		max-width: 400px
+		width: 100%
+		height: 1px
+		display: block
+		background: #b5b5b5
+		position: absolute
+		left: 0
+		right: 0
+		bottom: -1px
+		margin: auto
+	&:after
+		content: ""
+		width: 100px
+		height: 4px
+		display: block
+		background: #1abc9c
+		position: absolute
+		left: 0
+		right: 0
+		bottom: -3px
+		margin: auto
+.about__wrap
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	flex-direction: row
+	align-items: center
+	flex-wrap: nowrap
+	justify-content: center
+	div
+		+max-screen(1720px)
+			zoom: 0.5
+.about__content
+	max-width: 1140px
+	margin: 0 70px
+	flex-grow: 2
+.about__img
+	margin: 0 auto 100px
+	max-width: 970px
+.about__desc
+	font-size: rem(24px)
+	font-family: $fl
+	color: #333
+.skills
+	text-align: left
+	flex-grow: 1
+	min-width: 320px
+	max-width: 580px
+.skills__title
+	font-size: rem(36px)
+	text-transform: uppercase
+	color: #333
+	font-family: $fl
+.skills__wrap
+	margin: 90px 0
+.meter__tile
+	@extend .skills__title
+	font-size: rem(20px)
+	margin-bottom: 25px
+	display: block
+.progress 
+	background: #eee
+	height: 34px
+	+border-radius(17px)
+	overflow: hidden
+	span
+		background: #1abc9c
+		display: block
+		height: 100%
+		+border-radius(17px)
+.btn__df
+	width: 280px
+	height: 96px
+	border: 4px solid #1abc9c
+	background: transparent
+	+border-radius(40px)
+	color: #1abc9c
+	font-size: rem(22px)
+	font-family: $fr
+
+	/*___________      Section TEAM         _____________*/
+#team
+	background: url(../img/team_bg.jpg)
+	background-position: 0 center
+	background-size: cover
+	position: relative
+	max-width: 100%
+	color: #fff
+.title--wl
+	color: #fff
+	&:after
+		background: #fff 
+.title__desc
+	font-size: rem(30px)
+	font-family: $fl
+	color: #fff
+	text-align: center
+	margin-bottom: 115px
+
+.team__list	
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	justify-content: space-around
+	flex-wrap: wrap
+.team__item
+	margin-bottom: 20px
+.team__img
+	max-width: 400px
+	max-height: 400px
+	+border-radius(50%)
+	overflow: hidden
+.team__name
+	text-align: center
+	font-size: rem(48px)
+	font-family: $fl
+	color: #fff
+	margin-top: 50px
+	text-transform: capitalize
+.proff
+	@extend .team__name
+	display: block
+	font-size: rem(26px)
+/*_____________        Section fact         ______________*/
+#facts
+	background: #1abc9c
+	width: 100%
+	color: #fff
+
+.facts__list
+	@extend .team__list	
+.fact__wrap
+	text-align: center
+.count
+	font-size: rem(80px)
+	display: block
+.name__count
+	font-size: rem(36px)
+/*____________   Section Services         ____________*/
+#services
+	background: #eee
+.services__list
+	@extend .team__list
+.services__icon__bg
+	min-width: 115px
+	height: 115px
+	display: inline-flex
+	background: #1abc9c
+	position: relative
+	justify-content: center
+	align-self: flex-start
+	.fa
+		align-self: center
+.services__item
+	margin-bottom: 10px
+	min-height: 200px
+	flex-grow: 1
+	width: 50%
+	padding-left: 50px
+	align-self: flex-start
+
+.services__wrap
+	
+	display: inline-flex
+.service
+	margin-left: 20px
+	margin-top: 35px
+.service__title
+	color: #1abc9c
+	font-size: rem(36px)
+	font-family: $fl
+.servise__desc
+	font-size: rem(24px)
+	font-family: $fl
+	color: #333
+/*_____________      Section Portfolio      _______________*/
+#portfolio
+	.title__desc
+		color: #333
+.portfolio__list
+	@extend .team__list
+	margin: 120px 0
+.portfolio__item
+	flex-basis: 25%
+.portfolio__wrap
+	padding: 20px
+.btn--center
+	margin: auto
+/*____________    Section Clients           _______________*/
+#clients
+	background: url(../img/reviews_bg.jpg)
+	background-position: 0 center
+	background-size: cover
+.resurse__list
+	@extend .team__list
+	margin-bottom: 130px
+.reviews__item
+	display: flex
+	justify-content: center
+	align-items: center
+
+
+.reviews__img
+	width: 395px
+	height: 395px
+	+border-radius(50%)
+	overflow: hidden
+.reviews__wrap
+	width: 640px
+	margin: 0 50px
+.reviews__client--text, .resurse__name
+	text-align: center
+	color: #fff
+	font-size: rem(24px)
+	font-family: $fl
+.reviews__client--name
+	font-weight: 600
+	color: #fff
+	font-size: rem(36px)
+	font-family: $fsb
+	margin-bottom: 50px
+.slider__reviews 
+	display: flex
+	justify-content: center
+	align-items: center
+.bx-wrapper
+	position: relative
+
+.bx-controls.bx-has-controls-direction 
+	align-items: stretch
+	align-content: center
+	position: absolute
+	flex-direction: row
+	top: 50%
+	margin-top: -50px
+	width: 100%
+	.fa
+		font-size: 100px
+		color: #fff
+.bx-viewport
+	width: 90%!important
+	margin: auto
+.bx-prev
+	left: 0
+	position: absolute
+.bx-next
+	right: 0
+	position: absolute	
+.icon, .resurse__name
+	display: inline-block
+	vertical-align: middle
+	margin-right: 20px
+	font-size: 	rem(26px)
+/*____________     Section Map          _________*/
+#map
+	padding: 0
+	position: relative
+	color: #fff
+	+max-screen(1720px)
+		zoom: 0.5
+.map__wrap
+	max-width: 1770px
+	margin: auto
+	position: absolute
+	top: 0
+	width: 100%
+.contact__bg
+	background: #34495e
+	width: 700px	
+	height: 750px	
+	display: block	
+	position: absolute
+	text-align: center
+	padding: 140px
+	top: 0
+	right: 0	
+	font-size: rem(36px)
+	font-family: $fl
+	
+.map__item
+	display: inline-block
+	margin: 30px auto
+	span
+		display: block
+.tel
+	color: #1abc9c
+.social
+	margin: auto
+	width: 100%	
+.social__item
+	display: inline-block
+	margin: 10px
+/*_____________       Section   Contact form          _______________*/
+#contact
+	.title__desc
+		color: #333
+.contact__wrap
+	text-align: center
+.mes, .contact__list
+	flex-grow: 1	
+.contact__list
+	margin-right: 20px
+.contact__send__wrap	
+	display: flex   
+.input__contact
+	max-width: 830px
+	height: 100px
+	width: 100%
+	margin-bottom: 60px
+	+border-radius(40px)
+	background: #eee
+.message__contact
+	max-width: 830px
+	width: 100%
+	height: 420px
+	+border-radius(40px)
+	background: #eee

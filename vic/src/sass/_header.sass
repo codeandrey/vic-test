@@ -1,0 +1,144 @@
+/* __________________   Header  __________________*/
+div
+	box-sizing: border-box
+
+li
+	list-style: none
+	align-self: center
+.wrapper
+	max-width: 1770px
+	margin: auto
+	width: 100%
+	zoom: 0.5
+	display: flex
+	flex-direction: column
+	justify-content: flex-start
+.header
+	background: url(../img/header_bg.jpg)
+	background-position: 0 center
+	background-size: cover
+	position: relative
+	max-width: 100%
+	width: 100%
+	min-height: 100vh
+	color: #fff
+	display: -webkit-flex
+	display: -moz-flex
+	display: -ms-flex
+	display: -o-flex
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	align-items: center
+.header>div
+	+max-screen(1720px)
+		zoom: 0.5
+.header__top
+	margin: auto
+
+.flex-container
+	display: flex
+	flex-wrap: wrap
+	width: 100%
+	max-width: 1770px
+	justify-content: center
+	margin: auto
+
+.box
+	width: 287px
+	height: 287px
+	
+.site__title 
+	min-height: 287px
+	max-width: 861px
+.site__name 
+	height: 100px
+	text-align: left
+	font-size: rem(72px)
+	font-family: $feb
+	color: #fff
+.link__text-gren
+	color: #1edab5
+.site__desc
+	text-align: left
+	font-size: rem(36px)
+	font-family: $fl
+	color: #fff
+.nav__link, 
+	width: 100%
+	height: 100%
+	color: #fff
+	display: flex
+	font-size: rem(30px)
+	font-family: $fsb
+	align-items: center
+	justify-content: center
+	text-decoration: none
+	background: #1ccba8
+	&:hover,&:active
+		text-decoration: none
+		background: #1abc9c
+		color: #fff
+.site__link
+	@extend .nav__link
+	background: transparent
+	justify-content: flex-start
+	&:hover
+		background: transparent
+
+.link__iconed 
+	text-align: center
+.fa
+	font-size: rem(60px)
+	color: #fff
+.caption
+	display: block
+	margin-top: 20px
+	color: #fff
+	font-size: 20px
+	text-transform: uppercase
+.nav__arrow
+	height: 50px
+	margin: auto
+	width: auto
+.arrow__link
+	@extend .nav__link
+	background: transparent
+	&:hover
+		background: transparent
+.fa-angle-down
+	font-size: rem(72px)
+.menu__bg
+	background: #1ccba8
+	width: 100%
+
+.menu__wrap
+	max-width: 1770px
+	min-height: 170px
+	margin: auto
+	display: flex
+	align-self: flex-end
+.menu
+	width: 50%
+	display: flex
+	flex-direction: row
+	justify-content: space-around
+	+max-screen(1720px)
+		width: 85%
+.menu-item a
+	color: #fff
+	text-transform: uppercase
+	font-family: $fl
+	font-size: rem(30px)	
+	&:hover
+		font-weight: 600
+		text-decoration: none
+
+.header__logo
+	align-items: center
+	display: flex
+	margin-right: auto
+	flex-basis: 100px
+	justify-content: space-around
+	font-family: $feb
+	font-size: rem(36px)

@@ -1,0 +1,465 @@
+
+// width
+=r($width)
+	@media only screen and (max-width: $width+ "px")
+		@content
+
+$breakpoints: ("phone": 400px, "phone-wide": 480px, "phablet": 560px, "tablet-small": 640px, "tablet": 768px, "tablet-wide": 1024px, "desktop": 1248px, "desktop-wide": 1440px)
+
+=mq($width-layout, $type: min)
+	@if map_has_key($breakpoints, $width-layout) 
+		$width-layout: map_get($breakpoints, $width-layout)
+	@if($type == max)
+		$width-layout: $width-layout - 1px
+	@media only screen and (#{$type}-width: $width-layout)
+		@content
+/* example .site-header { padding: 2rem; font-size: 1.8rem;  @include mq('tablet-wide') { padding-top: 4rem;  font-size: 2.4rem;  } }  */  
+
+
+// height
+=rh($height)
+	@media only screen and (max-height: $height + "px")
+		@content
+
+
+
+=ie
+	*display: inline
+	*zoom: 1
+
+%pseudo
+	position: relative
+	&:before,&:after
+		content: ' '
+		position: absolute
+		top: 0
+		left: 0
+		
+=pseudo
+	@extend %pseudo
+
+=coverdiv
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	height: 100%
+
+=cover
+	background-repeat: no-repeat
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
+	background-position: 50% 50%
+
+=size($width: 100%, $height: 100%)
+	-moz-background-size: $width $height
+	-webkit-background-size: $width $height
+	background-size: $width $height
+
+// retina, also available as +hdpi
+=retina
+	@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2)
+		@content
+
+/**************             Фоновые изображения SVG с PNG и retina fallback                  ****************/		
+$image-path: '../img' !default
+$fallback-extension: 'png' !default
+$retina-suffix: '@2x'
+=background-image($name, $size:false)
+	background-image: url(#{$image-path}/#{$name}.svg)
+	@if($size)
+		background-size: $size
+	.no-svg &
+		background-image: url(#{$image-path}/#{$name}.#{$fallback-extension})
+	@media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) 
+		background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension})
+// example body { +background-image('pattern');
+
+=box
+	+box-sizing(border-box)
+//Центрирование рисунка 
+=vcenter-img($position)
+	position: $position
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+	margin: auto
+	display: block
+	max-width: 100%
+	max-height: 100%
+
+// Центрирование блока по горизонтали и по вертикали
+=vcenter-text
+	position: absolute
+	top: 50%
+	left: 50%
+	+translate(-50%,-50%)
+
+// simple gradient
+=g($color1, $color2)
+	+background-image(linear-gradient($color1, $color2))
+
+=gh($color1, $color2)
+	+background-image(linear-gradient(left, $color1, $color2))
+/**************      Fonts            ***************/
+// font-family
+=font($alias, $name)
+	@font-face
+		font-family: $alias
+		src: url("fonts/" + $name + ".eot")
+		src: url("fonts/" + $name + ".eot?#iefix") format("embedded-opentype"), url("fonts/" + $name + ".woff2") format("woff2"), url("fonts/" + $name + ".woff") format("woff"), url("fonts/" + $name + ".ttf") format("truetype")
+		font-weight: normal
+		font-style: normal
+
+=font-source-sans($font-size: false, $font-color: false, $font-weight: false,  $font-line-height: false)
+	font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif
+	@if $font-size
+		font-size: $font-size
+	@if $font-color 
+		color: $fonts-color
+	@if $font-weight
+		font-weight: $font-weight
+	@if $font-line-height 
+		line-height: $font-line-height 
+
+=font-sizeRem($size)
+	font-size: rem($size)
+
+=font-sizeEm($size)
+	font-size: em($size)
+
+// ROTATE
+=rotate($deg: 0, $m11: 0, $m12: 0, $m21: 0, $m22: 0)
+	-moz-transform: rotate($deg + deg)
+	-o-transform: rotate($deg + deg)
+	-webkit-transform: rotate($deg + deg)
+	-ms-transform: rotate($deg + deg)
+	transform: rotate($deg + deg)
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=$m11, M12=$m12,M21=$m21, M22=$m22, sizingMethod='auto expand')
+	zoom: 1
+
+// TRANSITION
+=transition($what)
+	-moz-transition: $what
+	-o-transition: $what
+	-webkit-transition: $what
+	-ms-transition: $what
+	transition: $what
+
+/***************                Анимация и ключевые кадры                  *********************/
+=keyframes($animation-name)
+	@-webkit-keyframes #{$animation-name}
+		@content
+	@-moz-keyframes #{$animation-name}
+		@content
+	@-ms-keyframes #{$animation-name} 
+		@content
+	@-o-keyframes #{$animation-name}
+		@content
+	@keyframes #{$animation-name}
+		@content
+
+=animation($str)
+	-webkit-animation: #{$str}
+	-moz-animation: #{$str}
+	-ms-animation: #{$str}
+	-o-animation: #{$str}
+	animation: #{$str}
+
+// example @include keyframes(slide-down) {   0% { opacity: 1; }   90% { opacity: 0; } }
+
+// .element {  width: 100px;  height: 100px;  background: black;  @include animation('slide-down 5s 3');} 
+
+=hide-text
+	font: 0/0 a
+	text-shadow: none
+	color: transparent
+
+=hidetext
+	+hide-text
+
+
+/***********            Clearfix                ************/
+=cearfix
+	&:after, &:before
+		content: " "
+		display: table
+	&:after
+		clear: both
+	*zoom: 1
+
+=placeholder-color($color)
+	&:-moz-placeholder,
+	&::-moz-placeholder
+		color: $color
+		opacity: 1
+	&::-webkit-input-placeholder
+		color: $color
+
+=placeholder
+	&:-ms-input-placeholder
+		@content
+	&:-moz-placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&::-webkit-input-placeholder
+		@content
+	&::placeholder
+		@content
+
+=unselectable
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+=nosel
+	+unselectable
+
+=prevent-text
+	-ms-word-break: break-all
+	word-break: break-all
+	word-break: break-word
+	-webkit-hyphens: auto
+	-moz-hyphens: auto
+	hyphens: auto
+
+=font-smoothing($val: antialiased)
+	-webkit-font-smoothing: $val
+	-moz-font-smoothing: $val
+	-ms-font-smoothing: $val
+	-o-font-smoothing: $val
+
+=selection
+	& ::selection
+		@content
+	& ::-moz-selection
+		@content
+
+=sel
+	+selection
+
+=scrollbar
+	&::-webkit-scrollbar
+		@content
+
+=scrollbar-track
+	&::-webkit-scrollbar-track
+		@content
+
+=scrollbar-thumb
+	&::-webkit-scrollbar-thumb
+		@content
+
+=scrollbar-track-piece
+	&::-webkit-scrollbar-track-piece
+		@content
+
+
+
+=rotate($var)
+	-ms-transform: rotate($var+deg)
+	-webkit-transform: rotate($var+deg)
+	transform: rotate($var+deg)
+
+=blur($var)
+	-webkit-filter: blur($var)
+	filter: blur($var)
+	
+=scale($var)
+	-ms-transform: scale($var)
+	-webkit-transform: scale($var)
+	transform: scale($var)
+
+=counter($var)
+	counter-reset: $var
+	> li, > dt
+		&:before
+			content: counter($var)
+			counter-increment: $var
+
+=longshadow($color)
+	text-shadow: makelongshadow($color)
+
+=border-radius($radius) 
+	-webkit-border-radius: $radius
+	-moz-border-radius: $radius 
+	-ms-border-radius: $radius
+	border-radius: $radius
+	
+=bs($bshadow)
+	-webkit-box-shadow: $bshadow
+	-moz-box-shadow: $bshadow
+	-ms-box-shadow: $bshadow
+	-o-box-shadow: $bshadow
+	box-shadow: $bshadow
+
+=ts($string) 
+	-webkit-text-shadow: $string
+	-moz-text-shadow: $string
+	-ms-text-shadow: $string
+	-o-text-shadow: $string
+	text-shadow: $string
+
+=links($link, $visit, $hover, $active)
+	a
+		color: $link
+		&:visited
+			color: $visit
+		&:hover
+			color: $hover
+		&:active
+			color: $active
+
+/**************           Кросс-браузерная непрозрачность             ****************/		
+=opacity($trans)
+	-moz-opacity: $trans
+	-khtml-opacity: $trans
+	opacity: $trans
+	filter: alpha(opactiy=($trans * 100))
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})"
+
+/******************       Центрирование блоков               ***************************/
+=justify
+	text-align: justify
+	line-height: 0
+	font-size: 0
+	text-justify: newspaper
+	zoom: 1
+	text-align-last: justify
+	&:after
+		content: ""
+		display: inline-block
+		width: 100%
+		height: 0px
+		visibility: hidden
+		overflow: hidden
+//parent
+=vertical  
+	height: 100vh
+	&:before
+		content: ""
+		display: inline-block
+		vertical-align: middle
+		width: 0
+		height: 100%
+	
+	//.child
+	//	display: inline-block
+	//	vertical-align: middle
+
+=push-auto
+	margin:  
+		left: auto
+		right: auto
+/*******************       Фігури      ***************************/
+// Триугольник
+
+//triangle
+=triangle($width, $height, $bg, $direction)
+	width: 0px
+	height: 0px
+	border-style: solid
+	@if $direction == top
+		border-width: 0 $width / 2 + px $height + px $width / 2 + px
+		border-color: transparent transparent $bg transparent
+	@if $direction == right
+		border-width: $height / 2 + px 0 $height / 2 + px $width + px
+		border-color: transparent transparent transparent $bg
+	@if $direction == bottom
+		border-width: $height + px $width / 2 + px 0 $width / 2 + px
+		border-color: $bg transparent transparent transparent
+	@if $direction == lelft
+		border-width: $height / 2 + px $width + px $height / 2 + px 0
+		border-color: transparent $bg transparent transparent
+	@if $direction == topleft
+		border-width: $height + px $width + px 0 0
+		border-color: $bg transparent transparent transparent
+	@if $direction == topright
+		border-width: 0 $width + px $height + px 0
+		border-color: transparent $bg transparent transparent
+	@if $direction == bottmright
+		border-width: 0 0 $height + px $width + px
+		border-color: transparent transparent $bg transparent
+	@if $direction == bottomleft
+		border-width: $height + px 0 0 $width + px
+		border-color: transparent transparent transparent $bg
+// example
+// +triangle(500,50, #000, left)
+// +triangle(500,50, #000, bottomleft)
+/**************           Відтинання межі елемента                  ****************/  
+=truncate($truncation-boundary)
+	max-width: $truncation-boundary
+	white-space: nowrap
+	overflow: hidden
+	text-overflow: ellipsis
+// Обрезание текста с 3 точиями
+=text-overflow
+	overflow: hidden
+	-ms-text-overflow: ellipsis
+	text-overflow: ellipsis
+	white-space: nowrap
+
+/**************     Modal Window                      **************/
+=overlay
+	bottom: 0
+	left: 0
+	position: absolute
+	right: 0
+	top: 0
+	background: black
+  	opacity: 0.8
+
+/**********             Апаратное ускорение                      ***********/
+=hardware($backface: true, $perspective: 1000)
+	@if $backface
+		backface-visibility: hidden
+    	perspective: $perspective
+
+/***************         Function  **************************/
+
+@function grid-width($n)
+	@return $n * $grid-width + ($n - 1) * $gutter-width;
+
+
+// example     #sidebar { width: grid-width(5); } to ->  #sidebar {  width: 240px; } 
+
+@function em($pixels, $context: $browser-context)
+	@return #{$pixels/$context}em
+
+@function rem($size) 
+	$remSize: $size / 16px
+	@return $remSize * 1rem
+
+@function makelongshadow($color)
+	$val: 0px 0px $color
+	@for $i from 1 through 200
+		$val: #{$val}, #{$i}px #{$i}px #{$color}
+	@return $val
+
+@function  z($name )
+	@if  index($z-indexes , $name )
+		@return (length ($z-indexes) - index ($z-indexes, $name)) + 1 
+	@else 
+		@warn "В этом списке нет элемента # {$name} Выберите один из:" #{$z-indexes}
+		@return null
+
+// example .site-header {      z-index : z ( 'site-header' ); }    
+
+=font-family($font-name:'Helinca', $font-size:14px, $font-weight:400, $font-color:#000000)
+	font-family: $font-name
+	font-size: rem($font-size)	
+	font-weight: $font-weight
+	color: $font-color
+=clearfix
+    &:after,&:before
+        display: table
+        content: ''
+    &:after
+        clear: both

@@ -1,0 +1,85 @@
+div.header__top
+	div.flex-container
+		div.box.site__title
+			h1.site__name
+				a(href="/").site__link 
+					stan.link__text GERDUK
+					span.link__text-gren REATIP.
+			div.site__desc Suspendisse mattis at libero sed
+		div.box
+			a(href="#team").nav__link
+				div.link__wrap
+					div.link__iconed
+						i.fa.fa-users
+						span.caption our team
+		div.box
+			a(href="#").nav__link
+				div.img__wrap
+					img(src="/img/1.jpg").nav__pic
+		div.box
+		div.box
+			a(href="#portfolio").nav__link
+				div.link__wrap
+					div.link__iconed
+						i.fa.fa-desktop
+						span.caption portfolio
+		
+		div.box
+			a(href="#services").nav__link
+				div.link__wrap
+					div.link__iconed
+						i.fa.fa-magic
+						span.caption services
+		div.box
+			a(href="#").nav__link
+				div.link__wrap
+					div.img__wrap
+						img(src="/img/3.jpg").nav__pic
+		div.box
+			a(href="#").nav__link
+				div.link__wrap
+					div.img__wrap
+						img(src="/img/4.jpg").nav__pic
+		div.box
+			a(href="#about").nav__link
+				div.link__wrap
+					div.link__iconed
+						i.fa.fa-info-circle
+						span.caption about
+		div.box
+			a(href="#").nav__link
+				div.link__wrap
+					div.img__wrap
+						img(src="/img/5.jpg").nav__pic
+		div.box
+		div.box
+			a(href="#").nav__link
+				div.link__wrap
+					div.img__wrap
+						img(src="/img/6.jpg").nav__pic
+		div.box
+			a(href="#contact").nav__link
+				div.link__wrap
+					div.link__iconed
+						i.fa.fa-envelope-o
+						span.caption contact
+		div.box
+		div.box
+						
+		div.box
+			a(href="#").nav__link
+				div.link__wrap
+					div.img__wrap
+						img(src="/img/6.jpg").nav__pic
+
+div.nav__arrow
+	a(href="#").arrow__link
+		i.fa.fa-angle-down
+div.menu__bg
+	div.menu__wrap
+		div.header__logo GK.			
+		nav.menu
+			- var navs = ["Home", "About", "Team", "Service", "Portfolio", "Contact"]
+			for item, i in navs 
+				li.menu-item
+					a(href="#") #{item}
